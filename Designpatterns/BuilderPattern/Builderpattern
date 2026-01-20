@@ -1,0 +1,101 @@
+Builder Pattern
+✅ Definition
+
+Builder Pattern is a creational design pattern used to create complex objects step by step.
+It separates the construction process of an object from its final representation, so the same process can create different versions of the object.
+
+❓ Why Builder Pattern comes
+
+Builder pattern comes to solve problems caused by:
+
+Constructors having too many parameters
+constructor telescoping
+mutable
+inconsistent state problem
+scattered validation
+
+Many optional fields
+
+Confusing parameter order
+
+Multiple constructor overloads
+
+👉 When object creation becomes messy and unreadable, Builder is needed.
+
+⏰ When to use Builder Pattern
+
+Use Builder Pattern when:
+
+Object has many optional attributes
+
+Object creation must be step by step
+
+You want readable object creation
+
+Same object can be built in different ways
+
+Constructor overloading becomes hard to manage
+
+🧠 How Builder Pattern solves the problem
+
+Builder Pattern:
+
+Removes large constructors
+
+Builds object incrementally
+
+Makes code clean and readable
+
+Allows different configurations of the same object
+
+Separates what is built from how it is built
+
+👉 Client controls what features to add
+👉 Builder controls how the object is created
+
+🚗 Real-Life Example (Non-Food)
+Car Customization
+
+You go to a car showroom.
+
+You don’t say:
+
+“Give me a car with engine=true, ac=false, sunroof=true, gps=false…”
+
+Instead, you say step by step:
+
+Add engine
+
+Add AC
+
+Add music system
+
+Each step adds a feature.
+
+👉 Final car is built after all choices are made
+
+This is exactly how Builder Pattern works.
+
+🧩 Problem Without Builder
+Car(engine, ac, sunroof, gps, airbags, color, music)
+
+
+❌ Hard to read
+❌ Order matters
+❌ Optional values confusing
+
+✅ With Builder
+CarBuilder()
+  .addEngine()
+  .addAC()
+  .addMusic()
+  .build()
+
+
+✔ Clear
+✔ Flexible
+✔ Maintainable
+
+🎯 Interview One-Line Answer
+
+“Builder Pattern is used to create complex objects step by step, especially when an object has many optional parameters.”
