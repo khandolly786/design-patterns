@@ -1,0 +1,219 @@
+1️⃣ Definition
+
+Decorator Pattern is a structural design pattern that allows us to add new behavior or responsibilities to an object dynamically (at runtime) without modifying its original class.
+
+👉 It follows the principle:
+“Open for extension, Closed for modification.”
+
+2️⃣ Why Decorator Pattern Came
+
+Decorator Pattern came to solve problems caused by:
+
+Too many subclasses
+
+Feature explosion
+
+Rigid inheritance hierarchy
+
+Need to add features dynamically
+
+❌ Problem without Decorator
+
+If we use inheritance for every feature combination:
+
+Coffee
+ ├── CoffeeWithMilk
+ ├── CoffeeWithSugar
+ ├── CoffeeWithMilkAndSugar
+ ├── CoffeeWithCream
+ ├── CoffeeWithMilkSugarCream
+
+
+😵 Too many classes → Class explosion
+
+3️⃣ What Problem Decorator Solves
+
+Avoids subclass explosion
+
+Adds functionality without touching existing code
+
+Allows mix & match of features
+
+Supports runtime behavior change
+
+4️⃣ When to Use Decorator Pattern
+
+Use Decorator Pattern when:
+
+You want to add optional features
+
+You don’t want to modify existing classes
+
+Inheritance leads to too many subclasses
+
+Behavior should be added at runtime
+
+You want flexible combinations of features
+
+5️⃣ When NOT to Use Decorator Pattern
+
+Avoid Decorator when:
+
+Object is very simple
+
+No dynamic behavior is required
+
+Too many decorators make debugging hard
+
+6️⃣ Key Components of Decorator Pattern
+🔹 1. Component (Interface / Abstract Class)
+
+Defines the base behavior.
+
+🔹 2. Concrete Component
+
+Original object whose behavior we want to extend.
+
+🔹 3. Decorator (Abstract)
+
+Implements the same interface and wraps the component.
+
+🔹 4. Concrete Decorator
+
+Adds extra behavior before or after delegating to the wrapped object.
+
+7️⃣ Structure (Logical Flow)
+Client
+  ↓
+Decorator
+  ↓
+Concrete Component
+
+
+Decorator has-a component (composition), not is-a subclass (inheritance).
+
+8️⃣ Simple Real-Life Analogy (Non-Food)
+🎮 Video Game Character
+
+Base character → can run
+
+Add armor → extra protection
+
+Add weapon → extra attack
+
+Add shield → extra defense
+
+👉 You wrap character with abilities
+👉 Same character, different powers
+👉 Added dynamically
+
+This is Decorator Pattern.
+
+9️⃣ Simple Python Example
+# Component
+class Notifier:
+    def send(self, message):
+        pass
+
+
+# Concrete Component
+class EmailNotifier(Notifier):
+    def send(self, message):
+        return f"Email sent: {message}"
+
+
+# Decorator
+class NotifierDecorator(Notifier):
+    def __init__(self, notifier):
+        self.notifier = notifier
+
+
+# Concrete Decorators
+class SMSDecorator(NotifierDecorator):
+    def send(self, message):
+        return self.notifier.send(message) + " | SMS sent"
+
+
+class WhatsAppDecorator(NotifierDecorator):
+    def send(self, message):
+        return self.notifier.send(message) + " | WhatsApp sent"
+
+Usage
+notifier = EmailNotifier()
+notifier = SMSDecorator(notifier)
+notifier = WhatsAppDecorator(notifier)
+
+print(notifier.send("Hello"))
+
+Output
+Email sent: Hello | SMS sent | WhatsApp sent
+
+🔁 What Happened Here?
+
+Email → base behavior
+
+SMS → added without modifying Email class
+
+WhatsApp → added dynamically
+
+Same object, extended behavior
+
+10️⃣ Decorator vs Inheritance
+Decorator	Inheritance
+Runtime behavior	Compile-time behavior
+Flexible	Rigid
+Avoids class explosion	Causes class explosion
+Uses composition	Uses inheritance
+11️⃣ Decorator vs Adapter (Very Important)
+Decorator	Adapter
+Adds new behavior	Converts interface
+Same interface	Different interface
+Enhances object	Makes incompatible classes work
+12️⃣ SOLID Principles Followed
+
+✅ Open-Closed Principle
+
+✅ Single Responsibility Principle
+
+✅ Composition over Inheritance
+
+13️⃣ Advantages
+
+Flexible and extensible
+
+No modification of existing code
+
+Dynamic behavior addition
+
+Cleaner than inheritance
+
+14️⃣ Disadvantages
+
+Many small classes
+
+Harder debugging if overused
+
+Order of decorators may matter
+
+15️⃣ Interview One-Liners
+
+Definition
+
+“Decorator Pattern allows behavior to be added dynamically to an object without modifying its class.”
+
+Use case
+
+“Used when inheritance causes class explosion.”
+
+Key idea
+
+“Wrap objects instead of subclassing.”
+
+16️⃣ Memory Trick 🧠
+
+🧠 Decorator = Gift wrapping 🎁
+Same gift, extra layers, more features.
+
+17️⃣ Very Short Exam Answer (4–5 lines)
+
+Decorator Pattern is a structural design pattern used to add new responsibilities to an object dynamically. It avoids subclass explosion and follows the Open-Closed Principle. It uses composition instead of inheritance. Decorators wrap objects and enhance their behavior at runtime.
