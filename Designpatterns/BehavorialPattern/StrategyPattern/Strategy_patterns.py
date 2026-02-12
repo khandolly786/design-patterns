@@ -114,6 +114,6 @@ if __name__ == "__main__":
 
 # The Robot class does not know how walking, talking, or flying happens. It only knows that these behaviors exist and can be called. Different robots (CompanionRobot and WorkerRobot) are created by injecting different behavior objects. This makes the design flexible, easy to extend, and follows Open-Closed Principle because new behaviors can be added without changing existing robot code. In short, behavior changes without modifying the robot class — only the strategy changes.
 
-# 🎯 One-Line Interview Answer
+# 🎯 One-Line Inter An
 
 # “The Strategy Pattern allows us to define a family of behaviors, encapsulate them, and make them interchangeable at runtime without modifying the main class.”
