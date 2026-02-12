@@ -1,0 +1,250 @@
+1️⃣ Definition
+
+Proxy Pattern is a structural design pattern in which a proxy object acts as a substitute or placeholder for a real object to control access to it.
+
+👉 The proxy and the real object share the same interface,
+so the client cannot tell the difference between them.
+
+2️⃣ Why Proxy Pattern Came
+
+Proxy pattern exists to solve problems like:
+
+Expensive object creation
+
+Heavy resources usage
+
+Security control needed
+
+Remote access
+
+Lazy loading
+
+Access restrictions
+
+3️⃣ Core Idea (Simple Line)
+
+Client talks to Proxy,
+Proxy talks to Real Object.
+
+4️⃣ Types of Proxy Pattern
+🔹 1. Virtual Proxy
+
+👉 Creates object only when needed
+( Lazy loading )
+
+🔹 2. Protection Proxy
+
+👉 Controls access (security / permissions)
+
+🔹 3. Remote Proxy
+
+👉 Represents object in another system (network / API)
+
+🔹 4. Caching Proxy
+
+👉 Stores results to improve performance
+
+🔹 5. Logging Proxy
+
+👉 Logs access and operations
+
+5️⃣ Problem Without Proxy
+Client → Real Object
+
+
+❌ Always heavy load
+❌ No access control
+❌ No caching
+❌ No security
+❌ No monitoring
+
+6️⃣ Solution With Proxy
+Client → Proxy → Real Object
+
+
+✔ Access control
+✔ Lazy loading
+✔ Caching
+✔ Security
+✔ Performance optimization
+
+7️⃣ Structure of Proxy Pattern
+Components:
+
+Subject (Interface)
+
+Common interface for Proxy & RealObject
+
+RealSubject
+
+Actual object that does real work
+
+Proxy
+
+Controls access to RealSubject
+
+Client
+
+Uses Subject interface
+
+8️⃣ Simple Python Example
+# Subject Interface
+class Image:
+    def display(self):
+        pass
+
+
+# Real Subject
+class RealImage(Image):
+    def __init__(self, filename):
+        print("Loading image from disk...")
+        self.filename = filename
+
+    def display(self):
+        print(f"Displaying {self.filename}")
+
+
+# Proxy
+class ImageProxy(Image):
+    def __init__(self, filename):
+        self.filename = filename
+        self.real_image = None
+
+    def display(self):
+        if self.real_image is None:
+            self.real_image = RealImage(self.filename)
+        self.real_image.display()
+
+
+# Client
+img = ImageProxy("photo.png")
+img.display()   # loads + displays
+img.display()   # only displays (cached)
+
+9️⃣ What Happened Here?
+
+ImageProxy controls creation of RealImage
+
+Real image is created only when needed
+
+This is Virtual Proxy
+
+🔁 Real-Life Analogy (Non-Food)
+🏦 Bank Locker System
+
+You cannot directly access the locker.
+
+Process:
+
+You → Bank Counter (Proxy) → Locker Room (Real Object)
+
+
+The counter:
+
+Checks identity
+
+Controls access
+
+Logs activity
+
+Then allows access
+
+👉 Counter = Proxy
+👉 Locker = Real Object
+👉 You = Client
+
+10️⃣ Proxy vs Decorator vs Adapter (Important)
+Pattern	Purpose
+Proxy	Control access
+Decorator	Add new behavior
+Adapter	Convert interface
+11️⃣ Advantages
+
+Improves performance
+
+Adds security
+
+Enables lazy loading
+
+Controls access
+
+Supports logging & monitoring
+
+Separation of concerns
+
+12️⃣ Disadvantages
+
+Extra layer of complexity
+
+Slight performance overhead
+
+More classes
+
+13️⃣ When to Use Proxy Pattern
+
+Use Proxy when:
+
+Object creation is expensive
+
+Access needs control
+
+Object is remote
+
+Caching is required
+
+Security is required
+
+14️⃣ When NOT to Use
+
+Avoid Proxy when:
+
+Object is lightweight
+
+No access control needed
+
+Simplicity is priority
+
+15️⃣ SOLID Principles Followed
+
+✅ Open-Closed Principle
+
+✅ Single Responsibility Principle
+
+✅ Dependency Inversion Principle
+
+16️⃣ Interview One-Liners
+
+Definition
+
+“Proxy Pattern provides a surrogate object to control access to a real object.”
+
+Use case
+
+“Used for lazy loading, access control, caching, and security.”
+
+Key idea
+
+“Proxy controls access, Decorator adds behavior.”
+
+17️⃣ Memory Trick 🧠
+
+🧠 Proxy = Security Guard 🚨
+You don’t go directly inside — guard checks first.
+
+18️⃣ Very Short Exam Answer (4–5 lines)
+
+Proxy Pattern is a structural design pattern where a proxy object controls access to a real object. It is used for lazy loading, access control, caching, and security. The proxy and real object share the same interface. It improves performance and system security.
+
+If you want next:
+
+✅ Proxy vs Facade vs Decorator (notes)
+
+✅ UML diagram explanation
+
+✅ Real interview questions
+
+✅ Proxy pattern in C++ / Java / Python
+
+✅ Proxy vs Flyweight
+
+Just tell me 😊
